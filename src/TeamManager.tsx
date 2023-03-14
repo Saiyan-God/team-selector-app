@@ -91,14 +91,14 @@ export function TeamManager() {
 
     return (
         <>
-            <div className='bg-gradient-to-r from-violet-500 to-rose-300 font-mono h-screen'>
+            <div className='bg-gradient-to-r from-violet-500 via-fuchsia-500 to-rose-400 font-mono font-bold h-screen'>
                 <div className="p-6 bg-black text-white text-2xl">  
                     <h1>
                         Team Selector
                     </h1>
                 </div>
                 <div className='flex flex-row space-x-4 p-4'>
-                    <div className='basis-1/4 rounded bg-fuchsia-400 border-black border-2 p-4'>
+                    <div className='basis-1/4 rounded bg-emerald-400 border-black border-4 p-4'>
                         <NewPlayer
                             addPlayer={addPlayer}
                         />
@@ -112,14 +112,14 @@ export function TeamManager() {
                             >Randomize Teams</button>
                         </div>
                     </div>
-                    <div className='basis-1/4 rounded bg-rose-400 border-black border-2 p-4'>
+                    <div className='basis-1/4 rounded bg-amber-400 border-black border-4 p-4'>
                         <h2>Players:</h2>
                         <PlayersListPanel
                             players={players}
                             removePlayer={removePlayer}
                         />
                     </div>
-                    <div className='basis-1/4 rounded bg-blue-400 border-black border-2 p-4'>
+                    <div className='basis-1/4 rounded bg-blue-400 border-black border-4 p-4'>
                         <h2>Teams:</h2>
                         <ul>
                             {Object.entries(teams).map(([teamName, players], index) => (

@@ -53,7 +53,7 @@ export default function TeamPanel({
     let [backgroundColor, setBackgroundColor] = useState(getRandomColor());
     console.log(backgroundColor);
     return (
-        <div className={`${backgroundColor} rounded m-2 border-black border-2 p-2`}>
+        <div className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}>
             <div className="flex flex-row">
                 <p className="basis-3/4">{teamName}</p>
                 <button className="basis-1/4 hover:bg-indigo-100 hover:rounded" onClick={deleteTeam}>Delete</button>
