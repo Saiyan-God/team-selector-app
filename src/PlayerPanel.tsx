@@ -20,7 +20,7 @@ export default function PlayerPanel({
         <>
             <div className="flex flex-row">
                 <p className="basis-3/4">{player.name}</p>
-                <button className="basis-1/4 hover:bg-indigo-100" onClick={deletePlayer}>Delete</button>
+                <button className="basis-1/4 hover:bg-indigo-100 hover:rounded" onClick={deletePlayer}>Delete</button>
             </div>
         </>
     )

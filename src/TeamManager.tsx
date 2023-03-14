@@ -7,11 +7,6 @@ import PlayersListPanel from './PlayersListPanel';
 import TeamPanel from './TeamPanel';
 import { shuffleArray } from './utilities/untils';
 
-// const initialTeams = {
-//     'team 1': [],
-//     'team 2': []
-// };
-
 const initialPlayers: Player[] = [];
 
 const initialTeams: TeamDirectory = {
@@ -96,7 +91,7 @@ export function TeamManager() {
 
     return (
         <>
-            <div className='bg-violet-500 font-mono h-screen'>
+            <div className='bg-gradient-to-r from-violet-500 to-rose-300 font-mono h-screen'>
                 <div className="p-6 bg-black text-white text-2xl">  
                     <h1>
                         Team Selector
@@ -124,7 +119,7 @@ export function TeamManager() {
                             removePlayer={removePlayer}
                         />
                     </div>
-                    <div className='basis-1/4 rounded bg-cyan-400 border-black border-2 p-4'>
+                    <div className='basis-1/4 rounded bg-blue-400 border-black border-2 p-4'>
                         <h2>Teams:</h2>
                         <ul>
                             {Object.entries(teams).map(([teamName, players], index) => (
