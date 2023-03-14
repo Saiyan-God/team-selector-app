@@ -20,11 +20,15 @@ export default function NewTeam({
     <>
         <p>Add new team:</p>
             <input
+                className="p-1"
                 onChange={(event) => setTeam(event.target.value)}
                 type="text"
                 value={team}
             />
-            <button onClick={addNewTeam}>Submit</button>
+            <button
+                className="bg-indigo-100 p-1"
+                onClick={addNewTeam}
+            >Submit</button>
     </>
     )
 }

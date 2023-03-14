@@ -96,40 +96,51 @@ export function TeamManager() {
 
     return (
         <>
-            <div className='flex flex-row'>
-                <div className='basis-1/4'>
-                    <NewPlayer
-                        addPlayer={addPlayer}
-                    />
-                    <NewTeam 
-                        addTeam={addTeam}
-                    />
-                    <div>
-                        <button onClick={randomizeTeam}>Randomize Teams</button>
+            <div className='bg-violet-500 font-mono h-screen'>
+                <div className="p-6 bg-black text-white text-2xl">  
+                    <h1>
+                        Team Selector
+                    </h1>
+                </div>
+                <div className='flex flex-row space-x-4 p-4'>
+                    <div className='basis-1/4 rounded bg-fuchsia-400 border-black border-2 p-4'>
+                        <NewPlayer
+                            addPlayer={addPlayer}
+                        />
+                        <NewTeam 
+                            addTeam={addTeam}
+                        />
+                        <div>
+                            <button
+                                className="bg-indigo-100 p-1 mt-2"
+                                onClick={randomizeTeam}
+                            >Randomize Teams</button>
+                        </div>
+                    </div>
+                    <div className='basis-1/4 rounded bg-rose-400 border-black border-2 p-4'>
+                        <h2>Players:</h2>
+                        <PlayersListPanel
+                            players={players}
+                            removePlayer={removePlayer}
+                        />
+                    </div>
+                    <div className='basis-1/4 rounded bg-cyan-400 border-black border-2 p-4'>
+                        <h2>Teams:</h2>
+                        <ul>
+                            {Object.entries(teams).map(([teamName, players], index) => (
+                                // <li key={index} className="bg-red-700">
+                                <li className="" key={teamName}>
+                                    <TeamPanel 
+                                        players={players}
+                                        removeTeam={removeTeam}
+                                        teamName={teamName}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
-                <div className='basis-1/4'>
-                    <h2>Players</h2>
-                    <PlayersListPanel
-                        players={players}
-                        removePlayer={removePlayer}
-                    />
-                </div>
-                <div className='basis-1/4'>
-                    <h2>Teams:</h2>
-                    <ul>
-                        {Object.entries(teams).map(([teamName, players], index) => (
-                            // <li key={index} className="bg-red-700">
-                            <li key={index}>
-                                <TeamPanel 
-                                    players={players}
-                                    removeTeam={removeTeam}
-                                    teamName={teamName}
-                                />
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                
             </div>
         </>
       );

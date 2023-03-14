@@ -20,11 +20,15 @@ export default function NewPlayer({
         <>
             <p>Add new player:</p>
             <input
+                className="p-1"
                 onChange={(event) => setPlayer(event.target.value)}
                 type="text"
                 value={player}
             />
-            <button onClick={addNewPlayer}>Submit</button>
+            <button
+                className="bg-indigo-100 p-1"
+                onClick={addNewPlayer}
+            >Submit</button>
         </>
     );
 }
