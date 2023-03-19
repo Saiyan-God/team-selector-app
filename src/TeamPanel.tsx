@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { Player } from "./DataTypes"
+import { Team } from "./DataTypes";
+import { useAppDispatch } from './redux/hooks';
+import { removeTeam } from "./redux/teamDirectory";
 
 interface TeamPanelType {
-    teamName: string,
-    removeTeam: (teamName: string) => any,
-    players: Player[] | null
+    team: Team
 }
 
 const backgroundColors = [
@@ -33,33 +33,34 @@ const backgroundColors = [
 
 function getRandomColor() {
     let colorIndex = Math.floor(Math.random()*backgroundColors.length);
-    if(colorIndex == backgroundColors.length) {
+    if(colorIndex === backgroundColors.length) {
         colorIndex -= 1;
     }
     return backgroundColors[colorIndex];
 }
 
 export default function TeamPanel({
-    players,
-    removeTeam,
-    teamName,
+    team,
 }: TeamPanelType) {
+    let [backgroundColor, setBackgroundColor] = useState(getRandomColor());
 
-    const deleteTeam = () => {
-        console.log(`deleting team ${teamName}`);
-        removeTeam(teamName);
+    const dispatch = useAppDispatch();
+
+    const removeTeamFromState = () => {
+        dispatch(removeTeam({
+            id: team.id
+        }));
     }
 
-    let [backgroundColor, setBackgroundColor] = useState(getRandomColor());
-    console.log(backgroundColor);
+
     return (
         <div className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}>
             <div className="flex flex-row">
-                <p className="basis-3/4">{teamName}</p>
-                <button className="basis-1/4 hover:bg-indigo-100 hover:rounded" onClick={deleteTeam}>Delete</button>
+                <p className="basis-3/4">{team.name}</p>
+                <button className="basis-1/4 hover:bg-indigo-100 hover:rounded" onClick={removeTeamFromState}>Delete</button>
             </div>
             <ul>
-                {players?.map((player, index) => {
+                {team.players?.map((player, index) => {
                     return (<li className="indent-2" key={index}>{player.name}</li>);
                 })}
             </ul>
