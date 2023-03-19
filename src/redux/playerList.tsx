@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import type { Player, PlayerList} from '../DataTypes';
+import type { Player, PlayerList} from '../types/DataTypes';
 
 const player1Id = uuidv4();
 const player2Id = uuidv4();

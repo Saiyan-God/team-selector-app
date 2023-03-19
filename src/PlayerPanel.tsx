@@ -1,4 +1,4 @@
-import { Player } from "./DataTypes";
+import { Player } from "./types/DataTypes";
 import { useAppDispatch } from './redux/hooks';
 import { removePlayer } from "./redux/playerList";
 

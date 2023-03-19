@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import type { Team, TeamDirectory} from '../DataTypes';
+import type { Team, TeamDirectory} from '../types/DataTypes';
 
 const initialState: TeamDirectory = {
     'team-1-test': {

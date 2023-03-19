@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Team } from "./DataTypes";
+import { Team } from "./types/DataTypes";
 import { useAppDispatch } from './redux/hooks';
 import { removeTeam } from "./redux/teamDirectory";
 
