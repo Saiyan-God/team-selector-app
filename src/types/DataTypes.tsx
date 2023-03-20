@@ -1,7 +1,8 @@
 export interface Player {
     name: string,
     id: string,
-    team?: string
+    team?: string,
+    selected?: boolean
 }
 
 export interface PlayerList { 
@@ -11,7 +12,7 @@ export interface PlayerList {
 export interface Team {
     name: string,
     id: string,
-    players: Player[]
+    players: string[]
 }
 
 export interface TeamDirectory {

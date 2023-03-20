@@ -44,10 +44,19 @@ export const playerListSlice = createSlice({
             
             delete state.players[action.payload.id];
             return state;
+        },
+        toggleSelected: (state, action) => {
+            if(!action.payload.id || !state.players[action.payload.id]){
+                return state;
+            }
+            const prev = state.players[action.payload.id].selected ?? false;
+            state.players[action.payload.id].selected = !prev;
+            // state.players[action.payload.id].name = `${!prev}`; //////////////////
+            return state;
         }
     }
 })
 
-export const { addPlayer, removePlayer } = playerListSlice.actions;
+export const { addPlayer, removePlayer, toggleSelected } = playerListSlice.actions;
 
 export default playerListSlice.reducer;

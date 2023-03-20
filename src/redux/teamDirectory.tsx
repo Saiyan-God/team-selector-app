@@ -44,7 +44,7 @@ export const teamDirectorySlice = createSlice({
         },
         setPlayers: (state, action) => {
             if(!Array.isArray(action.payload)){
-                return state
+                return state;
             }
             for(let team of action.payload){
                 if(typeof team != 'object' ||

@@ -9,31 +9,32 @@ import { shuffleArray } from './utilities/utils';
 
 
 export function TeamManager() {
-    const { players: playerListNew } = useAppSelector((state) => state.playerList);
-    const teamDirectoryNew = useAppSelector((state) => state.teamDirectory);
+    const { players: playersList } = useAppSelector((state) => state.playerList);
+    const teamDirectory = useAppSelector((state) => state.teamDirectory);
     
     const dispatch = useAppDispatch();
 
     const randomizeTeam = () => {
-        const numTeams = Object.keys(teamDirectoryNew).length;
+        const numTeams = Object.keys(teamDirectory).length;
         if(numTeams > 0) {
-            const playersCopy = Object.values(playerListNew);
+            const playersCopy = Object.values(playersList);
             shuffleArray(playersCopy);
-            const newTeamsLineup = new Array(numTeams).fill([]).map(() => new Array(0));
+            const newTeamsLineup: string[][] = new Array(numTeams).fill([]).map(() => new Array(0));
             let teamIndex = 0;
             for(let player of playersCopy) {
-                newTeamsLineup[teamIndex++].push(player);
+                newTeamsLineup[teamIndex++].push(player.id);
                 if(teamIndex >= numTeams) {
                     teamIndex = 0;
                 }
             }
-            const teamsList = Object.keys(teamDirectoryNew);
+            const teamsList = Object.keys(teamDirectory);
             const playerAssigment = [];
             for(let i = 0; i < numTeams; i++) {
+                const teamId = teamDirectory[teamsList[i]].id;
                 playerAssigment.push({
-                    id: teamDirectoryNew[teamsList[i]].id,
+                    id: teamId,
                     players: newTeamsLineup[i],
-                })
+                });
             }
             dispatch(setPlayers(playerAssigment));
         }
@@ -64,13 +65,13 @@ export function TeamManager() {
                     <div className='basis-1/4 rounded bg-amber-400 border-black border-4 p-4'>
                         <h2>Players:</h2>
                         <PlayersListPanel
-                            players={Object.values(playerListNew)}
+                            players={Object.values(playersList)}
                         />
                     </div>
                     <div className='basis-1/4 rounded bg-blue-400 border-black border-4 p-4'>
                         <h2>Teams:</h2>
                         <ul>
-                            {Object.values(teamDirectoryNew).map(team => (
+                            {Object.values(teamDirectory).map(team => (
                                 <li key={team.id}>
                                     <TeamPanel
                                         team={team}
