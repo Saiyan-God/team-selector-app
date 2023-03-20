@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Player, Team } from "./types/DataTypes";
 import { useAppSelector, useAppDispatch } from './redux/hooks';
 import { removeTeam } from "./redux/teamDirectory";
+import DeleteButton from './DeleteButton';
 
 interface TeamPanelType {
     team: Team
@@ -91,8 +92,8 @@ export default function TeamPanel({
     return (
         <div className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}>
             <div className="flex flex-row">
-                <p className="basis-3/4">{team.name}</p>
-                <button className="basis-1/4 hover:bg-indigo-100 hover:rounded" onClick={removeTeamFromState}>Delete</button>
+                <p className="basis-full">{team.name}</p>
+                <DeleteButton onClick={removeTeamFromState}/>
             </div>
             <ul>
                 {teamPlayers.map(player => {

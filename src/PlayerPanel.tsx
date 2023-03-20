@@ -1,6 +1,7 @@
 import { Player } from "./types/DataTypes";
 import { useAppDispatch } from './redux/hooks';
 import { removePlayer, toggleSelected } from "./redux/playerList";
+import DeleteButton from "./DeleteButton";
 
 interface PlayersPanelType {
     player: Player,
@@ -27,11 +28,8 @@ export default function PlayerPanel({
     return (
         <>
             <div className={`flex flex-row ${player.selected ? 'bg-white rounded': ''}`} onMouseOver={highlightPlayer} onMouseOut={highlightPlayer}>
-                <p className="basis-3/4">{player.name}</p>
-                <button
-                    className="basis-1/4 hover:bg-indigo-100 hover:rounded"
-                    onClick={removePlayerFromState}
-                >Delete</button>
+                <p className="basis-full">{player.name}</p>
+                <DeleteButton onClick={removePlayerFromState}/>
             </div>
         </>
     )
