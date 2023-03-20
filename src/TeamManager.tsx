@@ -51,7 +51,7 @@ export function TeamManager() {
                     <h1>
                         Team Selector
                     </h1>
-                    <IoMdPerson className=' inline-block align-bottom'/>
+                    <IoMdPerson className='inline-block align-bottom'/>
                 </div>
                 <div className='flex flex-row space-x-4 p-4'>
                     <div className='basis-1/4 rounded bg-emerald-400 border-black border-4 p-4'>

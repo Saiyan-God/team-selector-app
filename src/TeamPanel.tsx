@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Player, Team } from "./types/DataTypes";
 import { useAppSelector, useAppDispatch } from './redux/hooks';
 import { removeTeam } from "./redux/teamDirectory";
+import DeleteButton from './DeleteButton';
 
 interface TeamPanelType {
     team: Team
@@ -67,6 +68,7 @@ export default function TeamPanel({
     team,
 }: TeamPanelType) {
     let [primaryColor, _setPrimaryColor] = useState(getRandomColor());
+    let [hover, setHover] = useState(false);
     
     const { players: playersList } = useAppSelector((state) => state.playerList);
     const teamPlayers: Player[] = [];
@@ -88,11 +90,21 @@ export default function TeamPanel({
     // const highlightColor = `${primaryColor}-${colorHighlight}`;
     const highlightColor = 'bg-white';
 
+    const hoverOver = () => {
+        setHover(true);
+    }
+    const hoverOut = () => {
+        setHover(false);
+    }
+
     return (
-        <div className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}>
+        <div
+            className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}
+            onMouseOver={hoverOver}
+            onMouseOut={hoverOut}>
             <div className="flex flex-row">
-                <p className="basis-3/4">{team.name}</p>
-                <button className="basis-1/4 hover:bg-indigo-100 hover:rounded" onClick={removeTeamFromState}>Delete</button>
+                <p className="basis-full">{team.name}</p>
+                {hover && <DeleteButton onClick={removeTeamFromState}/>}
             </div>
             <ul>
                 {teamPlayers.map(player => {
