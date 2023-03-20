@@ -1,6 +1,7 @@
 import { useAppSelector, useAppDispatch } from './redux/hooks';
 import { setPlayers } from "./redux/teamDirectory";
 
+import { IoMdPerson } from 'react-icons/io';
 import NewPlayer from './NewPlayer';
 import NewTeam from './NewTeam';
 import PlayersListPanel from './PlayersListPanel';
@@ -46,10 +47,11 @@ export function TeamManager() {
     return (
         <>
             <div className='bg-gradient-to-r from-violet-500 via-fuchsia-500 to-rose-400 font-mono font-bold h-screen'>
-                <div className="p-6 bg-black text-white text-2xl">  
+                <div className="flex p-6 bg-black text-white text-2xl items-center space-x-2">
                     <h1>
                         Team Selector
                     </h1>
+                    <IoMdPerson className='inline-block align-bottom'/>
                 </div>
                 <div className='flex flex-row space-x-4 p-4'>
                     <div className='basis-1/4 rounded bg-emerald-400 border-black border-4 p-4'>

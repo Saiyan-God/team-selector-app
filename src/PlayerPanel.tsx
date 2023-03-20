@@ -1,6 +1,8 @@
 import { Player } from "./types/DataTypes";
+import { useState } from 'react';
 import { useAppDispatch } from './redux/hooks';
-import { removePlayer, toggleSelected } from "./redux/playerList";
+import { removePlayer, selectPlayer } from "./redux/playerList";
+import DeleteButton from "./DeleteButton";
 
 interface PlayersPanelType {
     player: Player,
@@ -10,6 +12,8 @@ export default function PlayerPanel({
     player,
 }: PlayersPanelType) {
 
+    let [hover, setHover] = useState(false);
+
     const dispatch = useAppDispatch();
 
     const removePlayerFromState = () => {
@@ -18,21 +22,29 @@ export default function PlayerPanel({
         }));
     };
 
-    const highlightPlayer = () => {
-        dispatch(toggleSelected({
-            id: player.id
+    const highlightPlayer = (highlight: boolean) => {
+        dispatch(selectPlayer({
+            id: player.id,
+            selected: highlight
         }));
     };
 
+    const hoverOver = () => {
+        setHover(true);
+        highlightPlayer(true);
+    }
+    const hoverOut = () => {
+        setHover(false);
+        highlightPlayer(false);
+    }
+
     return (
-        <>
-            <div className={`flex flex-row ${player.selected ? 'bg-white rounded': ''}`} onMouseOver={highlightPlayer} onMouseOut={highlightPlayer}>
-                <p className="basis-3/4">{player.name}</p>
-                <button
-                    className="basis-1/4 hover:bg-indigo-100 hover:rounded"
-                    onClick={removePlayerFromState}
-                >Delete</button>
-            </div>
-        </>
+        <div
+            className={`flex flex-row ${player.selected ? 'bg-white rounded': ''}`}
+            onMouseOver={hoverOver}
+            onMouseOut={hoverOut}>
+            <p className="basis-full">{player.name}</p>
+            {hover && <DeleteButton onClick={removePlayerFromState}/>}
+        </div>
     )
 }

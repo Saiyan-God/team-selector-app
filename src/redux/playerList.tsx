@@ -45,18 +45,19 @@ export const playerListSlice = createSlice({
             delete state.players[action.payload.id];
             return state;
         },
-        toggleSelected: (state, action) => {
-            if(!action.payload.id || !state.players[action.payload.id]){
+        selectPlayer: (state, action) => {
+            if(!action.payload.id ||
+                !state.players[action.payload.id] ||
+                action.payload.selected == null ||
+                typeof action.payload.selected !== 'boolean'){
                 return state;
             }
-            const prev = state.players[action.payload.id].selected ?? false;
-            state.players[action.payload.id].selected = !prev;
-            // state.players[action.payload.id].name = `${!prev}`; //////////////////
+            state.players[action.payload.id].selected = action.payload.selected;
             return state;
         }
     }
 })
 
-export const { addPlayer, removePlayer, toggleSelected } = playerListSlice.actions;
+export const { addPlayer, removePlayer, selectPlayer } = playerListSlice.actions;
 
 export default playerListSlice.reducer;
