@@ -1,7 +1,7 @@
 import { Player } from "./types/DataTypes";
 import { useState } from 'react';
 import { useAppDispatch } from './redux/hooks';
-import { removePlayer, toggleSelected } from "./redux/playerList";
+import { removePlayer, selectPlayer } from "./redux/playerList";
 import DeleteButton from "./DeleteButton";
 
 interface PlayersPanelType {
@@ -22,19 +22,20 @@ export default function PlayerPanel({
         }));
     };
 
-    const highlightPlayer = () => {
-        dispatch(toggleSelected({
-            id: player.id
+    const highlightPlayer = (highlight: boolean) => {
+        dispatch(selectPlayer({
+            id: player.id,
+            selected: highlight
         }));
     };
 
     const hoverOver = () => {
         setHover(true);
-        highlightPlayer();
+        highlightPlayer(true);
     }
     const hoverOut = () => {
         setHover(false);
-        highlightPlayer();
+        highlightPlayer(false);
     }
 
     return (
