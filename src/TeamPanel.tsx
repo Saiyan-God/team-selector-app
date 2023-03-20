@@ -68,6 +68,7 @@ export default function TeamPanel({
     team,
 }: TeamPanelType) {
     let [primaryColor, _setPrimaryColor] = useState(getRandomColor());
+    let [hover, setHover] = useState(false);
     
     const { players: playersList } = useAppSelector((state) => state.playerList);
     const teamPlayers: Player[] = [];
@@ -89,11 +90,21 @@ export default function TeamPanel({
     // const highlightColor = `${primaryColor}-${colorHighlight}`;
     const highlightColor = 'bg-white';
 
+    const hoverOver = () => {
+        setHover(true);
+    }
+    const hoverOut = () => {
+        setHover(false);
+    }
+
     return (
-        <div className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}>
+        <div
+            className={`${backgroundColor} rounded m-2 border-black border-4 p-2`}
+            onMouseOver={hoverOver}
+            onMouseOut={hoverOut}>
             <div className="flex flex-row">
                 <p className="basis-full">{team.name}</p>
-                <DeleteButton onClick={removeTeamFromState}/>
+                {hover && <DeleteButton onClick={removeTeamFromState}/>}
             </div>
             <ul>
                 {teamPlayers.map(player => {
