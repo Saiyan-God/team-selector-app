@@ -1,19 +1,20 @@
 import { useState } from 'react';
+import { useAppDispatch } from './redux/hooks';
+import { addPlayer} from './redux/playerList';
 
-interface NewPlayerType {
-    addPlayer: (playerName: string) => any,
-}
-
-export default function NewPlayer({
-    addPlayer
-}: NewPlayerType) {
+export default function NewPlayer() {
 
     let [player, setPlayer] = useState('');
+    
+    const dispatch = useAppDispatch();
 
-    const addNewPlayer = () => {
-        console.log(`adding new player: ${player}`);
-        addPlayer(player);
-        setPlayer('');
+    const addNewPlayerToState = () => {
+        if(player != null || player !== '') {
+            dispatch(addPlayer({
+                playerName: player
+            }));
+            setPlayer('');
+        }
     }
 
     return (
@@ -27,7 +28,7 @@ export default function NewPlayer({
             />
             <button
                 className="bg-indigo-100 p-1"
-                onClick={addNewPlayer}
+                onClick={addNewPlayerToState}
             >Submit</button>
         </>
     );
