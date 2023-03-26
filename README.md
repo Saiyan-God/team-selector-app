@@ -2,7 +2,7 @@
 
 ## About
 
-Create teams and ranomly assign players to them
+Create teams and randomly assign players to them
 ![alt text](https://github.com/Saiyan-God/team-selector-app/blob/master/resources/app-ui.png?raw=true)
 
 ## Steps to Run
